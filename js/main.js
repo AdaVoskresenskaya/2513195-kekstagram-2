@@ -32,6 +32,9 @@ const MAX_PHOTO_ID = 25;
 const MIN_AVATAR_ID = 1;
 const MAX_AVATAR_ID = 6;
 
+const MIN_MESSAGES_AMOUNT = 1;
+const MAX_MESSAGES_AMOUNT = 1;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -69,12 +72,17 @@ const createIdGenerator = () => {
 
 const getCommentId = createIdGenerator();
 
-const getComment = () => ({
-  id: getCommentId(),
-  avatar: `img/avatar-${getRandomInteger(MIN_AVATAR_ID, MAX_AVATAR_ID)}.svg`,
-  message: getRandomArrayElement(MESSAGES),
-  name: getRandomArrayElement(NAMES)
-});
+const getRandomMessage = () => getRandomArrayElement(MESSAGES);
+
+const getComment = () => {
+  const sentences = Array.from({ length: getRandomInteger(MIN_MESSAGES_AMOUNT, MAX_MESSAGES_AMOUNT) },getRandomMessage);
+  return {
+    id: getCommentId(),
+    avatar: `img/avatar-${getRandomInteger(MIN_AVATAR_ID, MAX_AVATAR_ID)}.svg`,
+    message: sentences.join(' '),
+    name: getRandomArrayElement(NAMES)
+  };
+};
 
 
 const generatePhotoData = () => {
@@ -90,6 +98,8 @@ const generatePhotoData = () => {
 
 const arrayPhotos = Array.from({ length: PHOTOS_COUNT }, generatePhotoData);
 
+// eslint-disable-next-line no-console
+console.log(arrayPhotos);
 
 // const getPhotos = () => {
 //   const photos = [];
