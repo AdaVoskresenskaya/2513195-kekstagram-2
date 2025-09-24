@@ -2,7 +2,7 @@ import { isEscapeKey } from './utils.js';
 import { initComments, resetComments } from './comments.js';
 
 const bigPictureElement = document.querySelector('.big-picture');
-const bigPictureImg = bigPictureElement.querySelector('.big-picture__img img');
+const bigPictureImg = bigPictureElement.querySelector('.big-picture__img').querySelector('.img');
 const likesCountElement = bigPictureElement.querySelector('.likes-count');
 const descriptionElement = bigPictureElement.querySelector('.social__caption');
 const closeButton = bigPictureElement.querySelector('.big-picture__cancel');
